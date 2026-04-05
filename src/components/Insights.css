@@ -1,0 +1,314 @@
+/* ─────────────────────────────────────────────────
+   Insights.css  — fits inside Layout's .main area
+   ───────────────────────────────────────────────── */
+
+.insights {
+  padding: 18px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ── Fade-in animation system ── */
+.ins-fade {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease var(--d, 0s), transform 0.5s ease var(--d, 0s);
+}
+
+.ins-visible .ins-fade {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Header ── */
+.ins-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ins-welcome {
+  font-size: 12px;
+  color: var(--text3, #525252);
+  margin-bottom: 2px;
+}
+
+.ins-h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--green, #22c55e);
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.ins-sub {
+  font-size: 12px;
+  color: var(--text3, #525252);
+}
+
+.ins-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: var(--bg2, #0c0c0c);
+  border: 1px solid var(--border, #1f1f1f);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text2, #a3a3a3);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.ins-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green, #22c55e);
+  box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  animation: insPulse 2s infinite;
+}
+
+@keyframes insPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ── Stat Grid ── */
+.ins-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* ── Stat Card ── */
+.ins-stat-card {
+  background: var(--card, #0f0f0f);
+  border: 1px solid var(--border, #1f1f1f);
+  border-radius: 16px;
+  padding: 18px 20px 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: insCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+
+@keyframes insCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ins-stat-card:hover {
+  border-color: var(--accent, #818cf8);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 0 1px var(--accent, #818cf8);
+  transform: translateY(-3px);
+}
+
+/* subtle glow blob */
+.ins-stat-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--accent-bg, rgba(129,140,248,0.1));
+  filter: blur(20px);
+  pointer-events: none;
+  transition: opacity 0.3s;
+  opacity: 0.6;
+}
+
+.ins-stat-card:hover::before {
+  opacity: 1;
+}
+
+.ins-sc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ins-sc-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3, #525252);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ins-sc-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.ins-stat-card:hover .ins-sc-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.ins-sc-icon svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+}
+
+.ins-sc-value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: var(--text, #e5e5e5);
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.ins-sc-sub {
+  font-size: 11.5px;
+  color: var(--text3, #525252);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+/* bottom accent bar */
+.ins-sc-bar {
+  height: 3px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ins-sc-bar-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ins-visible .ins-sc-bar-fill {
+  width: 70%;
+}
+
+/* ── Charts Row ── */
+.ins-charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.ins-chart-card {
+  background: var(--card, #0f0f0f);
+  border: 1px solid var(--border, #1f1f1f);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.25s;
+}
+
+.ins-chart-card:hover {
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.ins-chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.ins-chart-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text, #e5e5e5);
+  margin-bottom: 3px;
+}
+
+.ins-chart-sub {
+  font-size: 11px;
+  color: var(--text3, #525252);
+}
+
+.ins-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--green, #22c55e);
+  flex-shrink: 0;
+}
+
+.ins-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #22c55e);
+  animation: insPulse 1.5s infinite;
+}
+
+.ins-chart-wrap {
+  height: 220px;
+  position: relative;
+}
+
+/* ── Summary Strip ── */
+.ins-summary {
+  background: var(--card, #0f0f0f);
+  border: 1px solid var(--border, #1f1f1f);
+  border-radius: 14px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.ins-summary-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ins-summary-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border, #1f1f1f);
+}
+
+.ins-sum-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3, #525252);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ins-sum-value {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.ins-sum-value.green { color: #4ade80; }
+.ins-sum-value.red   { color: #f87171; }

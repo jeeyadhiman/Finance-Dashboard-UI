@@ -1,0 +1,803 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --bg: #050505;
+  --bg2: #0c0c0c;
+  --bg3: #121212;
+  --bg4: #1a1a1a;
+
+  /* 👇 GREEN ONLY FOR ACCENTS */
+  --green: #22c55e;
+  --green-soft: rgba(34, 197, 94, 0.1);
+  --green-border: rgba(34, 197, 94, 0.2);
+
+  /* 👇 MAIN UI COLORS */
+  --card: #0f0f0f;
+  --border: #1f1f1f;
+
+  --text: #e5e5e5;
+  --text2: #a3a3a3;
+  --text3: #737373;
+
+  --red: #ef4444;
+  --cyan: #22d3ee;
+
+  --font: 'Space Grotesk', sans-serif;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* ─── APP SHELL ─────────────────────────────── */
+.app {
+  display: flex;
+  height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ─── SIDEBAR ───────────────────────────────── */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: var(--bg2);
+  border-right: 1px solid var(--bg4);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease, min-width 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.sidebar.mini {
+  width: 64px;
+  min-width: 64px;
+}
+
+/* Top logo */
+.sb-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 14px 14px;
+  border-bottom: 1px solid var(--bg4);
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: var(--green);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.logo-text {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.logo-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: -0.3px;
+}
+
+.logo-sub {
+  font-size: 11px;
+  color: var(--text3);
+}
+
+/* Toggle button */
+.toggle-btn {
+  position: absolute;
+  top: 16px;
+  right: 5px;
+  width: 28px;
+  height: 28px;
+  background: var(--bg2);
+  border: 1px solid var(--bg4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: background 0.2s;
+}
+
+.toggle-btn:hover {
+  background: var(--bg4);
+}
+
+.toggle-btn svg {
+  transition: transform 0.3s;
+}
+
+.sidebar.mini .toggle-btn svg {
+  transform: rotate(180deg);
+}
+
+/* Section label */
+.sb-section {
+  padding: 12px 8px 4px;
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.sidebar.mini .sb-section {
+  opacity: 0;
+}
+
+/* Nav items */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin: 2px 6px;
+  border: 1px solid transparent;
+}
+
+.nav-item:hover {
+  background: var(--bg4);
+}
+
+.nav-item.active {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+.ni-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ni-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text2);
+}
+
+.nav-item.active .ni-icon svg {
+  stroke: var(--green);
+}
+
+.ni-label {
+  font-size: 14px;
+  color: var(--text2);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.nav-item.active .ni-label {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.sidebar.mini .ni-label {
+  opacity: 0;
+}
+
+/* Profile / Bottom */
+.sb-bottom {
+  margin-top: auto;
+  border-top: 1px solid var(--bg4);
+  padding: 10px 6px;
+  position: relative;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-btn:hover {
+  background: var(--bg4);
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  background: var(--green4);
+  border: 2px solid var(--green3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.profile-info {
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.sidebar.mini .profile-info {
+  opacity: 0;
+}
+/* Mini mode — nav items mein sirf icon */
+.sidebar.mini .ni-label {
+  display: none;
+}
+
+/* Mini mode — profile info hide */
+.sidebar.mini .profile-info {
+  display: none;
+}
+
+/* Mini mode — sb-section (MENU label) hide */
+.sidebar.mini .sb-section {
+  display: none;
+}
+
+/* Mini mode — logo text hide */
+.sidebar.mini .logo-text {
+  display: none;
+}
+.pname {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pemail {
+  font-size: 11px;
+  color: var(--text3);
+}
+
+/* Profile dropdown */
+.profile-menu {
+  position: fixed;        /* ← absolute se fixed */
+  bottom: 80px;
+  left: 14px;
+  width: 200px;
+  background: var(--bg3);
+  border: 1px solid var(--bg4);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 9999;          /* ← bahut upar */
+  animation: fadeUp 0.15s ease;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.6);
+}
+
+.sidebar.mini .profile-menu {
+  left: 76px;             /* ← mini mode mein right side */
+  bottom: 80px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pm-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pm-item:hover {
+  background: var(--bg4);
+}
+
+.pm-item svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--text2);
+  min-width: 15px;
+}
+
+.pm-item span {
+  font-size: 13px;
+  color: var(--text2);
+}
+
+.pm-item.danger span {
+  color: var(--red);
+}
+
+.pm-item.danger svg {
+  stroke: var(--red);
+}
+
+.pm-divider {
+  height: 1px;
+  background: var(--bg4);
+}
+
+/* ─── MAIN ──────────────────────────────────── */
+.main {
+  flex: 1;
+  min-width: 0;         /* already there, keep it */
+  min-height: 0;        /* ← ADD THIS */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;     /* ← ADD THIS */
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--bg3);
+  flex-shrink: 0;
+}
+
+.greeting {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.topbar h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.page-sub {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--bg4);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text2);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+box-shadow: 0 0 4px rgba(34, 197, 94, 0.4); /* softer glow */
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--bg2);
+  border: 1px solid var(--bg4);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover {
+  background: var(--bg4);
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text2);
+}
+
+/* ─── CONTENT ───────────────────────────────── */
+.content {
+  flex: 1;
+  overflow: hidden;
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 0;
+}
+
+/* Stat cards */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--bg4);
+  border-radius: 16px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  opacity: 0.06;
+  background: var(--green);
+  transform: translate(20px, -20px);
+}
+
+.sc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sc-label {
+  font-size: 12px;
+  color: var(--text3);
+  font-weight: 500;
+}
+
+.sc-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sc-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sc-icon.blue { background: #0d2535; }
+.sc-icon.blue svg { stroke: var(--cyan); }
+.sc-icon.green { background: var(--green4); }
+.sc-icon.green svg { stroke: var(--green); }
+.sc-icon.red { background: #2a0d0d; }
+.sc-icon.red svg { stroke: var(--red); }
+
+.sc-value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--text);
+}
+
+.sc-footer {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sc-change {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sc-change.up   { background: #0d2a10; color: #4caf50; }
+.sc-change.down { background: #2a0d0d; color: #ef5350; }
+
+.sc-change-label {
+  font-size: 11px;
+  color: var(--text3);
+}
+
+/* Bottom row */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+.chart-card,
+.donut-card {
+  background: var(--card);
+  border: 1px solid var(--bg4);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cc-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.cc-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.cc-sub {
+  font-size: 11px;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--green);
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 1.5s infinite;
+}
+
+.chart-wrap {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+.chart-wrap canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* Donut */
+.donut-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+.donut-wrap {
+  position: relative;
+  width: 140px;
+  min-width: 140px;
+  height: 140px;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.dc-label {
+  font-size: 10px;
+  color: var(--text3);
+  font-weight: 500;
+}
+
+.dc-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legend-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-name {
+  font-size: 11px;
+  color: var(--text2);
+}
+
+.legend-pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Paste this at the END of your Dashboard.css — ye existing styles override karenge */
+
+/* ── Sidebar overflow fix ── */
+.sidebar {
+  overflow: visible !important;
+}
+
+/* ── Profile menu — sirf full mode mein dikhta hai ── */
+.profile-menu {
+  position: absolute;
+  bottom: 70px;
+  left: 6px;
+  right: 6px;
+  width: auto;
+  background: #131313;
+  border: 1px solid #1f1f1f;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+  animation: fadeUp 0.15s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mini mode mein pm items ka icon stroke color fix ── */
+.sidebar.mini .nav-item .ni-icon svg {
+  stroke: #a3a3a3;
+}
+
+/* Sign out icon red */
+.sidebar.mini .nav-item:last-child .ni-icon svg {
+  stroke: #ef4444;
+}
+
+/* ── Mobile responsiveness ── */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed !important;
+    left: -260px !important;
+    top: 0 !important;
+    height: 100vh !important;
+    z-index: 100 !important;
+    transition: left 0.28s cubic-bezier(0.22,1,0.36,1) !important;
+    width: 220px !important;
+    overflow: hidden !important;
+  }
+
+  .sidebar.mobile-open {
+    left: 0 !important;
+  }
+
+  .toggle-btn {
+    display: none !important;
+  }
+
+  .mobile-topbar {
+    display: flex !important;
+  }
+}
+
+/* ── Mobile topbar ── */
+.mobile-topbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #0a0f07;
+  border-bottom: 1px solid rgba(124,252,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.mobile-topbar-logo {
+  font-size: 16px;
+  font-weight: 800;
+  color: #22c55e;
+  letter-spacing: -0.5px;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: #22c55e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sb-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 99;
+}
+
+.sb-mobile-overlay.visible {
+  display: block;
+}

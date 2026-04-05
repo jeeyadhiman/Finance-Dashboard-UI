@@ -1,0 +1,402 @@
+/* ── Hero Layout ───────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6vw;
+  padding: 60px 6vw;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* ── Texture & Atmosphere ──────────────────────── */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.bg-glow-left {
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 45vw;
+  height: 60vh;
+  background: radial-gradient(ellipse, rgba(60, 120, 20, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow-right {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 35vw;
+  height: 50vh;
+  background: radial-gradient(ellipse, rgba(100, 200, 30, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124, 252, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 252, 0, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Floating Coins ───────────────────────────── */
+.floating-coin {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  animation: floatCoin linear infinite alternate;
+  opacity: 0.65;
+}
+
+@keyframes floatCoin {
+  0%   { transform: translateY(0px) rotate(-4deg); }
+  100% { transform: translateY(-18px) rotate(4deg); }
+}
+
+/* ── Left: Card ───────────────────────────────── */
+.hero-left {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-wrapper {
+  position: relative;
+}
+
+.card-glow {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 80px;
+  background: radial-gradient(ellipse, rgba(80, 200, 20, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+}
+
+.card-phone {
+  position: relative;
+  z-index: 2;
+  width: 320px;
+  background: linear-gradient(160deg, #1a2e10 0%, #0f1e09 100%);
+  border-radius: 28px;
+  border: 1px solid var(--border-card);
+  padding: 14px 14px 20px;
+  box-shadow:
+    0 0 0 1px rgba(124, 252, 0, 0.06),
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(124, 252, 0, 0.1);
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.card-notch {
+  width: 60px;
+  height: 6px;
+  background: rgba(124, 252, 0, 0.18);
+  border-radius: 3px;
+  margin: 0 auto 14px;
+}
+
+.card-screen {
+  background: linear-gradient(135deg, #1e3412 0%, #162b0e 100%);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(124, 252, 0, 0.1);
+}
+
+/* ── Credit Card Inside ───────────────────────── */
+.credit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.credit-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-chip {
+  width: 34px;
+  height: 26px;
+  background: linear-gradient(135deg, #3a6b20, #2a4d14);
+  border-radius: 5px;
+  border: 1px solid rgba(124, 252, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 5px;
+}
+
+.chip-line {
+  height: 1px;
+  background: rgba(124, 252, 0, 0.4);
+  border-radius: 1px;
+}
+
+.card-wave svg {
+  width: 44px;
+  height: 28px;
+}
+
+.credit-card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.card-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.card-number {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.card-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.balance-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.balance-amount {
+  font-size: 16px;
+  color: var(--green-bright);
+  font-weight: 800;
+}
+
+/* ── Right: Copy ──────────────────────────────── */
+.hero-right {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Badge ────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(124, 252, 0, 0.08);
+  border: 1px solid rgba(124, 252, 0, 0.2);
+  border-radius: 999px;
+  padding: 8px 18px;
+  width: fit-content;
+}
+
+.badge-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.badge span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--green-bright);
+}
+
+/* ── Title ────────────────────────────────────── */
+.hero-title {
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #90ff10;
+}
+
+.title-accent {
+  color: var(--green-bright);
+  display: block;
+}
+
+/* ── Description ──────────────────────────────── */
+.hero-desc {
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 500;
+  max-width: 440px;
+}
+
+/* ── Buttons ──────────────────────────────────── */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 16px 34px;
+  background: #90ff10;
+  color: #0a1406;
+  border: none;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 30px rgba(124, 252, 0, 0.35);
+}
+
+.btn-primary:hover {
+  background: #90ff10;
+  transform: translateY(-2px);
+  box-shadow: 0 0 48px rgba(124, 252, 0, 0.55);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  padding: 15px 30px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-outline:hover {
+  border-color: rgba(124, 252, 0, 0.4);
+  background: rgba(124, 252, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ── Scroll Hint ──────────────────────────────── */
+.scroll-hint {
+  color: var(--text-muted);
+  width: 20px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-hint svg {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* ── Entrance Animations ──────────────────────── */
+.animate-in {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.animate-in.visible {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    padding: 80px 24px 60px;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .badge {
+    margin: 0 auto;
+  }
+
+  .title-accent {
+    display: inline;
+  }
+
+  .hero-desc {
+    margin: 0 auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .scroll-hint {
+    margin: 0 auto;
+  }
+
+  .card-phone {
+    width: 280px;
+  }
+
+  .floating-coin {
+    display: none;
+  }
+}

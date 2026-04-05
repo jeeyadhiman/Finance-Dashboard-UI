@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #0d1208;
+  --bg-secondary: #111a0c;
+  --bg-card: #162010;
+  --bg-card-inner: #1a2a12;
+  --green-bright: #7cfc00;
+  --green-mid: #4caf50;
+  --green-dim: #2d5a1b;
+  --green-glow: rgba(124, 252, 0, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #a0b090;
+  --text-muted: #5a7050;
+  --border-subtle: rgba(124, 252, 0, 0.08);
+  --border-card: rgba(124, 252, 0, 0.12);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-primary);
+  font-family: 'Manrope', sans-serif;
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* ── Mobile overlay for sidebar ── */
+.sb-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 99;
+}
+
+/* ── Mobile top bar ── */
+.mobile-topbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #0a0f07;
+  border-bottom: 1px solid rgba(124,252,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.mobile-topbar-logo {
+  font-size: 16px;
+  font-weight: 800;
+  color: #7cfc00;
+  letter-spacing: -0.5px;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: 1px solid rgba(124,252,0,0.2);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: #7cfc00;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  /* Hide desktop sidebar on mobile */
+  .sidebar {
+    position: fixed !important;
+    left: -260px !important;
+    top: 0 !important;
+    height: 100vh !important;
+    z-index: 100 !important;
+    transition: left 0.28s cubic-bezier(0.22,1,0.36,1) !important;
+    width: 220px !important;
+  }
+
+  .sidebar.mobile-open {
+    left: 0 !important;
+  }
+
+  .sidebar.mini {
+    left: -80px !important;
+    width: 72px !important;
+  }
+
+  .sidebar.mini.mobile-open {
+    left: 0 !important;
+  }
+
+  .sb-mobile-overlay.visible {
+    display: block;
+  }
+
+  /* Show mobile topbar */
+  .mobile-topbar {
+    display: flex;
+  }
+
+  /* Main takes full width */
+  .main {
+    width: 100%;
+    height: calc(100vh - 49px);
+    padding-top: 0;
+  }
+
+  /* Toggle btn hide on mobile (use hamburger instead) */
+  .toggle-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 200px !important;
+  }
+}

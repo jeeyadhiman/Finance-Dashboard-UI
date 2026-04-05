@@ -1,0 +1,343 @@
+/* ─────────────────────────────────────────────────
+   BudgetOnboarding.css
+   ───────────────────────────────────────────────── */
+.bo-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px;
+  box-sizing: border-box;
+}
+/* ── Shared card shell ── */
+.bo-card {
+  background: #0f0f0f;
+  border: 1px solid #1f1f1f;
+  border-radius: 20px;
+  width: 100%;
+  animation: boFadeIn 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+
+@keyframes boFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Welcome card ── */
+.bo-welcome-card {
+  max-width: 480px;
+  padding: 40px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.bo-welcome-emoji {
+  font-size: 52px;
+  line-height: 1;
+}
+
+.bo-welcome-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #22c55e;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.bo-welcome-desc {
+  font-size: 13.5px;
+  color: #737373;
+  line-height: 1.7;
+  max-width: 360px;
+  margin: 0;
+}
+
+.bo-welcome-steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.bo-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1f1f1f;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #a3a3a3;
+  text-align: left;
+}
+
+.bo-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: #22c55e;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bo-welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* ── Form card ── */
+.bo-form-card {
+  max-width: 620px;
+  padding: 18px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bo-form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bo-form-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #22c55e;
+  letter-spacing: -0.4px;
+  margin: 0 0 2px;
+}
+
+.bo-form-sub {
+  font-size: 11px;
+  color: #525252;
+  margin: 0;
+}
+
+.bo-total-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  background: rgba(34,197,94,0.06);
+  border: 1px solid rgba(34,197,94,0.18);
+  border-radius: 10px;
+  padding: 6px 12px;
+}
+
+.bo-total-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: #525252;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.bo-total-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: #22c55e;
+  letter-spacing: -0.4px;
+}
+
+/* ── Suggest button ── */
+.bo-suggest-btn {
+  align-self: flex-start;
+  padding: 5px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(34,197,94,0.25);
+  background: rgba(34,197,94,0.06);
+  color: #22c55e;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.bo-suggest-btn:hover {
+  background: rgba(34,197,94,0.12);
+  border-color: rgba(34,197,94,0.4);
+}
+
+/* ── Category list ── */
+.bo-cat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bo-cat-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background 0.18s, border-color 0.18s;
+  animation: boRowIn 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@keyframes boRowIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.bo-cat-row:hover {
+  background: rgba(255,255,255,0.02);
+  border-color: #1f1f1f;
+}
+
+.bo-cat-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bo-cat-emoji {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.bo-cat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bo-cat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e5e5e5;
+}
+
+.bo-cat-desc {
+  font-size: 10px;
+  color: #525252;
+}
+
+.bo-cat-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bo-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 5px 8px;
+  transition: border-color 0.18s;
+}
+
+.bo-input-wrap:focus-within {
+  border-color: rgba(34,197,94,0.4);
+}
+
+.bo-rupee {
+  font-size: 12px;
+  color: #525252;
+  font-weight: 600;
+}
+
+.bo-input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #e5e5e5;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  width: 75px;
+  text-align: right;
+}
+
+/* Mini bar hidden — space bachao */
+.bo-mini-bar-track {
+  display: none;
+}
+
+/* ── Footer ── */
+.bo-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid #1a1a1a;
+  flex-wrap: wrap;
+}
+
+.bo-footer-note {
+  font-size: 11px;
+  color: #525252;
+}
+
+/* ── Buttons ── */
+.bo-btn-primary {
+  padding: 9px 22px;
+  border-radius: 10px;
+  border: none;
+  background: #22c55e;
+  color: #050505;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.bo-btn-primary:hover:not(:disabled) {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.bo-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bo-btn-ghost {
+  padding: 9px 22px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: none;
+  color: #737373;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.18s;
+  width: 100%;
+}
+
+.bo-btn-ghost:hover {
+  color: #a3a3a3;
+  border-color: #333;
+}
